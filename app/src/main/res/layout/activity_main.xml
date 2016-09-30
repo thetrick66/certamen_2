@@ -8,10 +8,39 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="cl.telematica.patricio.certamen2_v2.MainActivity">
+    tools:context="cl.telematica.patricio.certamen2_v2.MainActivity"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
     <TextView
+        android:text="Git Finder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp"
+        android:id="@+id/textView"
+        android:textSize="40sp"
+        android:textColorLink="@android:color/background_dark" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="41dp"
+        android:id="@+id/editText"
+        android:layout_marginBottom="@dimen/activity_horizontal_margin"
+        android:hint="Usuario"
+        android:textColorLink="?attr/colorPrimary" />
+
+    <Button
+        android:text="Buscar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button"
+        android:layout_below="@+id/editText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="54dp" />
 </RelativeLayout>
