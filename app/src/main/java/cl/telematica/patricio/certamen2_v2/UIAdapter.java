@@ -16,21 +16,14 @@ import cl.telematica.patricio.certamen2_v2.modelo.repos;
 
 public class UIAdapter extends RecyclerView.Adapter<UIAdapter.ViewHolder> {
     private List<repos> mDataset;
-
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView mTextView;
-        public TextView mDescriptionView;
-        public TextView mActualView;
-        public ViewHolder(View v) {
-            super(v);
-            mTextView = (TextView) v.findViewById(R.id.textName);
-            mActualView = (TextView) v.findViewById(R.id.textActual);
-            mDescriptionView = (TextView) v.findViewById(R.id.textDescription);
-        }
-    }
+    private ItemClickListener clickListener;
 
     public UIAdapter(List<repos> myDataset) {
         mDataset = myDataset;
+    }
+
+    public void setOnClickListener(ItemClickListener listener) {
+        this.clickListener = listener;
     }
 
     @Override
@@ -53,5 +46,23 @@ public class UIAdapter extends RecyclerView.Adapter<UIAdapter.ViewHolder> {
     @Override
     public int getItemCount() {
         return mDataset.size();
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+        public TextView mTextView;
+        public TextView mDescriptionView;
+        public TextView mActualView;
+
+        public ViewHolder(View v) {
+            super(v);
+            mTextView = (TextView) v.findViewById(R.id.textName);
+            mActualView = (TextView) v.findViewById(R.id.textActual);
+            mDescriptionView = (TextView) v.findViewById(R.id.textDescription);
+            itemView.setOnClickListener(this); // bind the listener
+        }
+        @Override
+        public void onClick(View view) {
+            if (clickListener != null) clickListener.onClick(view, getAdapterPosition());
+        }
     }
 }

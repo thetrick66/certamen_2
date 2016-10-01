@@ -10,6 +10,8 @@ public class repos {
     private String name;
     private String description;
     private String actual;
+    private String url;
+    private int position;
 
     public void setId(int id){
         this.id = id;
@@ -41,5 +43,19 @@ public class repos {
 
     public void setActual(String actual) {
         this.actual = actual;
+    }
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+    public int getPosition() {
+        return position;
+    }
+
+    public void setPosition(int url) {
+        this.position = url;
     }
 }
