@@ -65,7 +65,7 @@ public class Main2Activity extends AppCompatActivity implements ItemClickListene
 
             @Override
             protected String doInBackground(Void... params) {
-                String resultado = new HttpServer().connectToServer("http://www.mocky.io/v2/57eee3822600009324111202", 15000);
+                String resultado = new HttpServer().connectToServer("http://www.mocky.io/v2/57eee5352600000d25111203", 15000);
                 return resultado;
             }
 
@@ -98,9 +98,7 @@ public class Main2Activity extends AppCompatActivity implements ItemClickListene
         List<repos> listaRepos = new ArrayList<repos>();
         try {
             JSONObject objeto = new JSONObject(result);
-            if(objeto.getString("message").equals("Not Found")){
-                texto.setText("No existe el usuario ingresado");
-            }
+            texto.setText("No existe el usuario ingresado");
             //repos repo = new repos();
             //repo.setNombre("NO EXISTE");
             //repo.setDescription("");
