@@ -1,4 +1,4 @@
-package cl.telematica.patricio.certamen2_v2;
+package cl.telematica.patricio.certamen2_v2.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,7 +7,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+import cl.telematica.patricio.certamen2_v2.R;
+import cl.telematica.patricio.certamen2_v2.views.MainView;
+
+public class MainActivity extends AppCompatActivity implements MainView, View.OnClickListener{
     Button boton;
     EditText editText;
     @Override

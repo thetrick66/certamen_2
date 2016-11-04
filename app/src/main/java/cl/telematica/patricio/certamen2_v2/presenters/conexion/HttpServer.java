@@ -1,4 +1,4 @@
-package cl.telematica.patricio.certamen2_v2.conexion;
+package cl.telematica.patricio.certamen2_v2.presenters.conexion;
 
 /**
  * Created by Patricio on 30-09-2016.

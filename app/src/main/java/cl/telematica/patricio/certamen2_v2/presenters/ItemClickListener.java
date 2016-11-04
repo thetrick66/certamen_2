@@ -1,4 +1,4 @@
-package cl.telematica.patricio.certamen2_v2;
+package cl.telematica.patricio.certamen2_v2.presenters;
 
 import android.view.View;
 

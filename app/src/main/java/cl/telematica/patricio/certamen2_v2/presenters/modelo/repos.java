@@ -1,4 +1,4 @@
-package cl.telematica.patricio.certamen2_v2.modelo;
+package cl.telematica.patricio.certamen2_v2.presenters.modelo;
 
 /**
  * Created by Patricio on 30-09-2016.

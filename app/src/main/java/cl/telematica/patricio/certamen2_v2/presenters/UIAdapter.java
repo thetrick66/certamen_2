@@ -1,4 +1,4 @@
-package cl.telematica.patricio.certamen2_v2;
+package cl.telematica.patricio.certamen2_v2.presenters;
 
 /**
  * Created by Patricio on 30-09-2016.
@@ -12,7 +12,8 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import cl.telematica.patricio.certamen2_v2.modelo.repos;
+import cl.telematica.patricio.certamen2_v2.R;
+import cl.telematica.patricio.certamen2_v2.presenters.modelo.repos;
 
 public class UIAdapter extends RecyclerView.Adapter<UIAdapter.ViewHolder> {
     private List<repos> mDataset;
