@@ -1,5 +1,7 @@
 package cl.telematica.patricio.certamen2_v2.presenters;
 
+import android.os.AsyncTask;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -7,6 +9,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import cl.telematica.patricio.certamen2_v2.presenters.conexion.HttpServer;
 import cl.telematica.patricio.certamen2_v2.presenters.modelo.repos;
 
 /**
@@ -15,6 +18,42 @@ import cl.telematica.patricio.certamen2_v2.presenters.modelo.repos;
 
 public class Certamen2PresenterImpl {
     public boolean encontrado = true;
+    private List<repos> reposes;
+    private String url2="";
+    public Certamen2PresenterImpl(String url){
+        url2=url;
+        AsyncTask<Void, Void, String> task = new AsyncTask<Void, Void, String>() {
+
+            @Override
+            protected void onPreExecute(){
+
+            }
+
+            @Override
+            protected String doInBackground(Void... params) {
+                String resultado = new HttpServer().connectToServer(url2, 15000);
+                System.out.println(resultado);
+                return resultado;
+            }
+
+            @Override
+            protected void onPostExecute(String result) {
+                if(result != null){
+                    System.out.println("Oh no!");
+                    reposes = getLista(result);
+                }
+                else{
+                    System.out.println("wajajaj");
+                }
+            }
+        };
+
+        task.execute();
+    }
+    public void conectar(){
+
+    }
+
 
     public List<repos> getLista(String result){
         List<repos> listaRepos = new ArrayList<repos>();
@@ -58,5 +97,6 @@ public class Certamen2PresenterImpl {
     public boolean getEncontrado(){
         return encontrado;
     }
+    public List<repos> getReposes(){ return reposes; }
 
 }

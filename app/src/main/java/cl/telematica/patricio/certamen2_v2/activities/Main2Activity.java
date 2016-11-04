@@ -2,7 +2,6 @@ package cl.telematica.patricio.certamen2_v2.activities;
 
 import android.content.Intent;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -16,7 +15,6 @@ import cl.telematica.patricio.certamen2_v2.R;
 import cl.telematica.patricio.certamen2_v2.presenters.Certamen2PresenterImpl;
 import cl.telematica.patricio.certamen2_v2.presenters.ItemClickListener;
 import cl.telematica.patricio.certamen2_v2.presenters.UIAdapter;
-import cl.telematica.patricio.certamen2_v2.presenters.conexion.HttpServer;
 import cl.telematica.patricio.certamen2_v2.presenters.modelo.repos;
 import cl.telematica.patricio.certamen2_v2.views.Main2View;
 
@@ -40,6 +38,7 @@ public class Main2Activity extends AppCompatActivity implements Main2View, ItemC
 
         Intent i = getIntent();
         Bundle extras = i.getExtras();
+
         if (extras != null) {
             String dato = extras.getString("DATO");
             if (dato.isEmpty()) {
@@ -55,40 +54,17 @@ public class Main2Activity extends AppCompatActivity implements Main2View, ItemC
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         mRecyclerView.setLayoutManager(mLayoutManager);
-
-        AsyncTask<Void, Void, String> task = new AsyncTask<Void, Void, String>() {
-
-            @Override
-            protected void onPreExecute(){
-
-            }
-
-            @Override
-            protected String doInBackground(Void... params) {
-                String resultado = new HttpServer().connectToServer(url, 15000);
-                return resultado;
-            }
-
-            @Override
-            protected void onPostExecute(String result) {
-                if(result != null){
-                    System.out.println(result);
-                    presenter = new Certamen2PresenterImpl();
-                    reposes = presenter.getLista(result);
-                    if(!presenter.getEncontrado()){
-                        textoChange("No existe el usuario ingresado");
-                    }
-                    mAdapter = new UIAdapter(reposes);
-                    mRecyclerView.setAdapter(mAdapter);
-                    ((UIAdapter) mAdapter).setOnClickListener(Main2Activity.this); // Bind the listener
-                }
-            }
-        };
-
-        task.execute();
-
+        presenter = new Certamen2PresenterImpl(url);
+        //presenter.conectar();
+        reposes = presenter.getReposes();
+        if(!presenter.getEncontrado()){
+            textoChange("No existe el usuario ingresado");
+        }
+        mAdapter = new UIAdapter(reposes);
+        mRecyclerView.setAdapter(mAdapter);
+        ((UIAdapter) mAdapter).setOnClickListener(Main2Activity.this); // Bind the listener
     }
-    
+
     @Override
     public void onClick(View view, int position) {
         final repos repo = reposes.get(position);
