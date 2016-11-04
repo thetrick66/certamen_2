@@ -88,6 +88,7 @@ public class Main2Activity extends AppCompatActivity implements Main2View, ItemC
         task.execute();
 
     }
+    
     @Override
     public void onClick(View view, int position) {
         final repos repo = reposes.get(position);
