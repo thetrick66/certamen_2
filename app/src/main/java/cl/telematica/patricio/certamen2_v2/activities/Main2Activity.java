@@ -56,6 +56,7 @@ public class Main2Activity extends AppCompatActivity implements Main2View, ItemC
         mRecyclerView.setLayoutManager(mLayoutManager);
         presenter = new Certamen2PresenterImpl(url);
         //presenter.conectar();
+        presenter.execute();
         reposes = presenter.getReposes();
         if(!presenter.getEncontrado()){
             textoChange("No existe el usuario ingresado");

@@ -16,39 +16,12 @@ import cl.telematica.patricio.certamen2_v2.presenters.modelo.repos;
  * Created by Patricio on 04-11-2016.
  */
 
-public class Certamen2PresenterImpl {
+public class Certamen2PresenterImpl extends AsyncTask<Void, Void, String>{
     public boolean encontrado = true;
     private List<repos> reposes;
     private String url2="";
     public Certamen2PresenterImpl(String url){
         url2=url;
-        AsyncTask<Void, Void, String> task = new AsyncTask<Void, Void, String>() {
-
-            @Override
-            protected void onPreExecute(){
-
-            }
-
-            @Override
-            protected String doInBackground(Void... params) {
-                String resultado = new HttpServer().connectToServer(url2, 15000);
-                System.out.println(resultado);
-                return resultado;
-            }
-
-            @Override
-            protected void onPostExecute(String result) {
-                if(result != null){
-                    System.out.println("Oh no!");
-                    reposes = getLista(result);
-                }
-                else{
-                    System.out.println("wajajaj");
-                }
-            }
-        };
-
-        task.execute();
     }
     public void conectar(){
 
@@ -99,4 +72,26 @@ public class Certamen2PresenterImpl {
     }
     public List<repos> getReposes(){ return reposes; }
 
+    @Override
+    protected void onPreExecute(){
+
+    }
+
+    @Override
+    protected String doInBackground(Void... params) {
+        String resultado = new HttpServer().connectToServer(url2, 15000);
+        System.out.println(resultado);
+        return resultado;
+    }
+
+    @Override
+    protected void onPostExecute(String result) {
+        if(result != null){
+            System.out.println("Oh no!");
+            reposes = getLista(result);
+        }
+        else{
+            System.out.println("wajajaj");
+        }
+    }
 }
